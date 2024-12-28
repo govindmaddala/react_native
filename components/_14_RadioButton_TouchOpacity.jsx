@@ -6,42 +6,32 @@ const _14_RadioButton_TouchOpacity = () => {
   return (
     <View style={styles.main}>
       <Text style={styles.heading}>_14_RadioButton_TouchOpacity</Text>
-      <TouchableOpacity onPress={()=>setSelected(1)}>
-        <View style={styles.mainRadio}>
-          <View style={styles.radio}>
-            {
-              selected === 1 && <View style={styles.selectedRadio}>
-            </View>
-            }
-          </View>
-          <Text style={styles.radioText}>Male</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>setSelected(2)}>
-        <View style={styles.mainRadio}>
-          <View style={styles.radio}>
-            {
-              selected === 2 && 
-              <View style={styles.selectedRadio}>
-            </View>}
-          </View>
-          <Text style={styles.radioText}>Female</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>setSelected(3)}>
-        <View style={styles.mainRadio}>
-          <View style={styles.radio}>
-            {
-              selected === 3 && 
-              <View style={styles.selectedRadio}>
-            </View>}
-          </View>
-          <Text style={styles.radioText}>Others</Text>
-        </View>
-      </TouchableOpacity>
+      {
+        radioButton(selected, setSelected, 1, "Radio 1")
+      }
+      {
+        radioButton(selected, setSelected, 2, "Radio 2")
+      }
+      {
+        radioButton(selected, setSelected, 3, "Radio 3")
+      }
     </View>
   )
 }
+
+const radioButton = (state, setState, num, text) => (
+  <TouchableOpacity onPress={() => setState(num)}>
+    <View style={styles.mainRadio}>
+      <View style={styles.radio}>
+        {
+          state === num &&
+          <View style={styles.selectedRadio}>
+          </View>}
+      </View>
+      <Text style={styles.radioText}>{text}</Text>
+    </View>
+  </TouchableOpacity>
+)
 
 const styles = StyleSheet.create({
   main: {
@@ -55,8 +45,7 @@ const styles = StyleSheet.create({
   mainRadio: {
     flex: 1,
     flexDirection: "row",
-    // justifyContent: 'center',
-    // alignItems: "center"
+    marginBottom: 5
   },
   radio: {
     width: 20,
@@ -68,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  selectedRadio:{
+  selectedRadio: {
     width: 14,
     height: 14,
     borderRadius: 7,
@@ -77,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black"
   },
   radioText: {
-    // marginLeft: 10
+    marginLeft: 5
   }
 })
 
